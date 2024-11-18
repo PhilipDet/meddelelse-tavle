@@ -16,4 +16,45 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  max-width: 40rem;
+  margin: auto;
+  margin-top: 5rem;
+}
+#container h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+#container label {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+#container input {
+  font-size: 1.6rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  margin-bottom: 1rem;
+}
+#container button {
+  font-size: 1.6rem;
+  padding: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#container button:hover {
+  background-color: #0056b3;
 }/*# sourceMappingURL=event.css.map */

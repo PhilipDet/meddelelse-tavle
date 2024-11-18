@@ -1,22 +1,38 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
-    font-size: 1.6rem;
-    line-height: 1;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    text-align: center;
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  display: flex;
+}
+
+#container {
+  width: 100%;
+  background-color: #a1a1a1;
+  font-size: 1.6rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+
+  h1 {
+    font-size: 3.6rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
 }
