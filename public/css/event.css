@@ -15,8 +15,5 @@ body {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
-  text-align: center;
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=event.css.map */
