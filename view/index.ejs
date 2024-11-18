@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%=title%></title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%=title%></title>
 
-    <link rel="stylesheet" href="/css/style.css" />
-  </head>
-  <body>
-    <div id="container">
-      <h1><%=title%></h1>
-      <p><%=message%></p>
-    </div>
-  </body>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <div id="container">
+            <h1><%=title%></h1>
+            <p><%=message%></p>
+            <% events.forEach(event => { %>
+            <div class="event">
+                <h2><%= event.name %></h2>
+                <p><%=event.description%></p>
+                <% if (event.image) { %>
+                <img
+                    src="<%= process.env.SUPABASE_URL %>/storage/v1/object/public/images/<%= event.image %>"
+                    alt="<%= event.image %>"
+                />
+                <% } %>
+            </div>
+            <% }); %>
+        </div>
+    </body>
 </html>
