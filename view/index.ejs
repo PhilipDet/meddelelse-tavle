@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title><%=title%></title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
 
-        <link rel="stylesheet" href="/css/style.css" />
-    </head>
-    <body>
-        <div id="container">
-            <div class="scrolling-banner">
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-            </div>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="scrolling-banner">
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+      </div>
 
-            <div class="event">
-                <% if (events.length > 0) { %>
-                <div class="event-info">
-                    <h2><%= events[0].title %></h2>
+      <div class="event">
+        <% if (events.length > 0) { %>
+        <div class="event-info">
+          <h2><%= events[0].title %></h2>
 
-                    <p><%= events[0].description %></p>
-                </div>
-
-                <% if (events[0].image) { %>
-
-                <img
-                    src="<%= process.env.SUPABASE_URL %>/storage/v1/object/public/images/<%= events[0].image %>"
-                    alt="<%= events[0].image %>"
-                />
-
-                <% }} %>
-            </div>
-
-            <div class="scrolling-banner">
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-                <span>MEDDELELSE</span>
-            </div>
+          <p><%= events[0].description %></p>
         </div>
-    </body>
+
+        <% if (events[0].image) { %>
+
+        <img
+          src="<%= process.env.SUPABASE_URL %>/storage/v1/object/public/images/<%= events[0].image %>"
+          alt="<%= events[0].image %>"
+        />
+
+        <% }} %>
+      </div>
+
+      <div class="scrolling-banner">
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+        <span>MEDDELELSE</span>
+      </div>
+    </div>
+  </body>
 </html>
