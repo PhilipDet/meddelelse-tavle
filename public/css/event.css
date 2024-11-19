@@ -38,12 +38,26 @@ body {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
 }
+#container label.required-input::after {
+  content: " *";
+  color: red;
+}
 #container input {
   font-size: 1.6rem;
   padding: 0.8rem;
   border: 1px solid #ccc;
   border-radius: 0.4rem;
   margin-bottom: 1rem;
+}
+#container textarea {
+  font-size: 1.6rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 0.4rem;
+  margin-bottom: 1rem;
+  min-height: 10rem;
+  max-height: 20rem;
+  resize: vertical;
 }
 #container button {
   font-size: 1.6rem;
