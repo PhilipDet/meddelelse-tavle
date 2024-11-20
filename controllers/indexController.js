@@ -5,16 +5,20 @@ export const indexController = express.Router();
 
 indexController.get("/", async (req, res) => {
     const events = await eventModel.getAllEvents();
-    events.forEach(async (event) => {
+    events.forEach(async (event, index) => {
         event.isInDateRange = checkIfInDateRange(event);
+        event.index = index;
         if (!event.isInDateRange) {
             const hasPassed = checkIfDateHasPassed(event.end_date);
             if (hasPassed) {
                 const removeEvent = await eventModel.removeEvent(event.id);
-                console.log(removeEvent);
+                events.splice(events.indexOf(event), 1);
+                console.log("Removed: ", removeEvent);
             }
         }
     });
+
+    console.log("Events: ", events);
 
     res.render("index", {
         title: "Meddelelser",

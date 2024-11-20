@@ -1,106 +1,182 @@
+@font-face {
+    font-family: "Sequel";
+    src: url("/fonts/SequelSansTTF/Sequel-Sans-Bold-Body.ttf")
+        format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Sequel";
+    src: url("/fonts/SequelSansTTF/Sequel-Sans-Heavy-Body.ttf")
+        format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  height: 100vh;
-  display: flex;
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
 }
 
 #container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .scrolling-banner {
-    overflow: hidden;
-    position: relative;
-    background-color: #ffea00;
-    height: 50px;
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 4.8rem;
-    padding: 3rem 0;
-
-    span {
-      display: inline-block;
-      white-space: nowrap;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: black;
-      animation: moveSpanL 2s linear infinite;
-      font-size: 3.6rem;
-    }
-    &:nth-last-child(1) {
-      justify-content: flex-end;
-
-      span {
-        animation: moveSpanR 2s linear infinite;
-      }
-    }
-  }
-
-  .event {
-    display: flex;
-    flex: 1;
-    width: 100%;
-    padding: 4rem 5rem;
+    flex-direction: column;
     justify-content: center;
-    gap: 18rem;
+    align-items: center;
 
-    .event-info {
-      max-width: 50%;
-      width: 100%;
+    .scrolling-banner {
+        overflow: hidden;
+        position: relative;
+        background-color: #ffea00;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 4.8rem;
+        padding: 3rem 0;
 
-      h1 {
-        font-size: 6.4rem;
-        font-weight: 900;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        text-align: center;
-      }
+        span {
+            font-family: "Sequel", sans-serif;
+            font-size: 3.6rem;
+            font-weight: 700;
+            display: inline-block;
+            white-space: nowrap;
+            text-transform: uppercase;
+            color: black;
+            animation: moveSpanL 3s linear infinite;
+        }
+        &:nth-last-child(1) {
+            justify-content: flex-end;
 
-      p {
-        font-size: 3.2rem;
-        line-height: 1.6;
-      }
+            span {
+                animation: moveSpanR 3s linear infinite;
+            }
+        }
     }
 
-    img {
-      max-width: 50%;
-      width: 100%;
-      object-fit: cover;
-      border-radius: 1rem;
+    #slider-content {
+        flex: 1;
+        display: flex;
+        position: relative;
+        width: 100%;
+
+        .event {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 4rem 5rem;
+            justify-content: center;
+            gap: 10rem;
+
+            .event-info {
+                max-width: 50%;
+                width: 100%;
+
+                h1 {
+                    font-family: "Sequel", sans-serif;
+                    font-size: 8rem;
+                    font-weight: 800;
+                    margin-bottom: 1rem;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+
+                p {
+                    font-size: 3.6rem;
+                    line-height: 1.6;
+                }
+            }
+
+            img {
+                max-width: 50%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 1rem;
+            }
+        }
     }
-  }
 }
 
-// Keyframes to move each span
+.active {
+    display: flex !important;
+}
+
 @keyframes moveSpanL {
-  0% {
-    transform: translateX(0); // Start just off-screen to the right
-  }
-  100% {
-    transform: translateX(-118%); // Move off-screen to the left
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-119%);
+    }
 }
 
 @keyframes moveSpanR {
-  0% {
-    transform: translateX(0); // Start just off-screen to the right
-  }
-  100% {
-    transform: translateX(118%); // Move off-screen to the left
-  }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(119%);
+    }
+}
+
+.showTransition {
+    animation: showTransition 1s ease-in-out;
+}
+
+@keyframes showTransition {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+//@keyframes showTransition {
+//    0% {
+//        opacity: 0;
+//    }
+//    100% {
+//        opacity: 1;
+//    }
+//}
+
+.removeTransition {
+    animation: removeTransition 1s ease-in-out;
+}
+
+//@keyframes removeTransition {
+//    0% {
+//        opacity: 1;
+//    }
+//    100% {
+//        opacity: 0;
+//    }
+//}
+
+@keyframes removeTransition {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }

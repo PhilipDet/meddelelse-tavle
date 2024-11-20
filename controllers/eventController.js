@@ -26,14 +26,12 @@ eventController.post(
         const image = req.file;
 
         if (image) {
-            const imageBuffer = image.buffer;
-            const imageName = `${Date.now()}-${image.originalname}`;
-            const mimeType = image.mimetype;
+            image.name = `${Date.now()}-${image.originalname}`;
 
             const uploadedImage = await eventModel.uploadImage(
-                imageName,
-                imageBuffer,
-                mimeType
+                image.name,
+                image.buffer,
+                image.mimetype
             );
             console.log("Image uploaded to Supabase:", uploadedImage);
         }
@@ -43,7 +41,7 @@ eventController.post(
             description,
             start_date,
             end_date,
-            image: image ? `${Date.now()}-${image.originalname}` : null,
+            image: image ? image.name : null,
         });
 
         res.json(eventData);
