@@ -1,25 +1,31 @@
 const mins = [0, 10, 20, 30, 40, 50];
+let hasUpdated = false;
+const updateTime = 5 * 1000; // 3s
 
-const updateTime = 3 * 1000; // 3s
+let env = {};
 
-setInterval(() => {
+fetchConfig();
+fetchEvents();
+
+setInterval(async () => {
     const time = new Date();
     const hours = time.getHours();
     const minutes = time.getMinutes();
     const seconds = time.getSeconds();
 
-    console.log(`Time: ${hours}:${minutes}:${seconds}`);
+    //console.log(`Time: ${hours}:${minutes}:${seconds}`);
 
-    if (mins.includes(minutes)) {
-        console.log("Time is divisible by 10");
+    if (mins.includes(minutes) && !hasUpdated) {
+        fetchEvents();
+        hasUpdated = true;
+    } else if (!mins.includes(minutes)) {
+        hasUpdated = false;
     }
-}, updateTime); // 1000ms = 1s
-
-//randomSlide();
+}, updateTime);
 
 setInterval(() => {
     nextSlide();
-}, 5 * 1000); // 10s
+}, 7.5 * 1000); // 5s
 
 async function nextSlide() {
     const slides = document.querySelectorAll(".event");
@@ -37,7 +43,6 @@ async function nextSlide() {
         next = 0;
     }
 
-    //await waitForRemoveTransition(currentSlide);
     currentSlide.classList.add("removeTransition");
     setTimeout(() => {
         currentSlide.classList.remove("removeTransition");
@@ -68,4 +73,38 @@ function waitForShowTransition(element) {
             resolve();
         }, 1000);
     });
+}
+
+function fetchEvents() {
+    fetch("/api/events")
+        .then((response) => response.json())
+        .then((events) => {
+            const eventList = document.getElementById("slider-content");
+            eventList.innerHTML = "";
+            console.log(events);
+
+            events.forEach((event, index) => {
+                const eventElement = document.createElement("div");
+                eventElement.classList.add("event");
+                if (index === 0) {
+                    eventElement.classList.add("active");
+                }
+                eventElement.innerHTML = `
+                    <div class="event-info">
+                        <h1>${event.title}</h1>
+                        <p>${event.description}</p>
+                    </div>
+                    <img src="${env.SUPABASE_URL}/storage/v1/object/public/images/${event.image}" alt="${event.title}">
+                `;
+                eventList.appendChild(eventElement);
+            });
+        });
+}
+
+function fetchConfig() {
+    fetch("/config")
+        .then((response) => response.json())
+        .then((config) => {
+            env = config.env;
+        });
 }

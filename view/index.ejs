@@ -35,29 +35,7 @@
                 <span>MEDDELELSE</span>
             </div>
 
-            <div id="slider-content">
-                <% events.forEach(event => { %>
-                <div
-                    data-index="<%= event.index %>"
-                    class="event <%= event.index == 0 ? 'active' : '' %>"
-                >
-                    <div class="event-info">
-                        <h1><%= event.title %></h1>
-
-                        <p><%= event.description %></p>
-                    </div>
-
-                    <% if (event.image) { %>
-
-                    <img
-                        src="<%= process.env.SUPABASE_URL %>/storage/v1/object/public/images/<%= event.image %>"
-                        alt="<%= event.image %>"
-                    />
-
-                    <% } %>
-                </div>
-                <% }); %>
-            </div>
+            <div id="slider-content"></div>
 
             <div class="scrolling-banner">
                 <span>MEDDELELSE</span>

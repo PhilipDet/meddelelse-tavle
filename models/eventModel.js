@@ -47,12 +47,13 @@ export class eventModel {
         }
     }
 
-    static async removeEvent(id) {
+    static async removeEvent(uuid) {
         try {
             let { data, error } = await supabase
                 .from("events")
                 .delete()
-                .eq("id", id);
+                .eq("uuid", uuid)
+                .select();
             if (error) {
                 throw new Error(error.message);
             } else {

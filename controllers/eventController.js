@@ -1,6 +1,5 @@
 import express from "express";
 import multer from "multer";
-import path from "path";
 
 export const eventController = express.Router();
 
@@ -14,6 +13,45 @@ eventController.get("/create-event", (req, res) => {
 });
 
 import { eventModel } from "../models/eventModel.js";
+
+eventController.get("/api/events", async (req, res) => {
+    try {
+        const events = await eventModel.getAllEvents();
+        const validEvents = [];
+
+        events.forEach(async (event) => {
+            event.isInDateRange = checkIfInDateRange(event);
+
+            if (event.isInDateRange) {
+                validEvents.push(event);
+            } else {
+                const hasPassed = checkIfDateHasPassed(event.end_date);
+                if (hasPassed) {
+                    await eventModel.removeEvent(event.uuid);
+                    console.log("Removed event: ", event.uuid);
+                }
+            }
+        });
+
+        res.json(validEvents);
+    } catch (error) {
+        console.error("Error fetching events:", error);
+        res.status(500).json("Error: ", error);
+    }
+});
+
+function checkIfInDateRange(event) {
+    const now = new Date();
+    const start_date = new Date(event.start_date);
+    const end_date = new Date(event.end_date);
+    return now >= start_date && now <= end_date;
+}
+
+function checkIfDateHasPassed(date) {
+    const now = new Date();
+    const dateToCheck = new Date(date);
+    return now > dateToCheck;
+}
 
 const upload = multer({ storage: multer.memoryStorage() });
 
